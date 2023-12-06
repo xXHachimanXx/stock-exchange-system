@@ -17,18 +17,21 @@ func TestBuyAsset(t *testing.T) {
 	investor.AddInvestorAssetPosition(investorAssetPosition)
 
 	wg := sync.WaitGroup{}
-	orderChanIn := make(chan *Order)
+	orderChan := make(chan *Order)
 	orderChanOut := make(chan *Order)
 
-	book := NewBook(orderChanIn, orderChanOut, &wg)
+	book := NewBook(orderChan, orderChanOut, &wg)
 	go book.Trade()
 
+	// add buy order
 	wg.Add(1)
 	order := NewOrder("1", investor, asset1, 5, 5, "SELL")
-	orderChanIn <- order
+	orderChan <- order
+
+	// add sell order
 
 	order2 := NewOrder("2", investor2, asset1, 5, 5, "BUY")
-	orderChanIn <- order2
+	orderChan <- order2
 	wg.Wait()
 
 	assert := assert.New(t)
@@ -58,7 +61,6 @@ func TestBuyAssetWithDifferentAssents(t *testing.T) {
 	orderChan := make(chan *Order)
 	orderChanOut := make(chan *Order)
 
-	wg.Add(1)
 	book := NewBook(orderChan, orderChanOut, &wg)
 	go book.Trade()
 
@@ -92,10 +94,10 @@ func TestBuyPartialAsset(t *testing.T) {
 	orderChan := make(chan *Order)
 	orderChanOut := make(chan *Order)
 
-	wg.Add(1)
 	book := NewBook(orderChan, orderChanOut, &wg)
 	go book.Trade()
 
+	wg.Add(1)
 	// investidor 2 quer comprar 5 shares
 	order2 := NewOrder("1", investor2, asset1, 5, 5.0, "BUY")
 	orderChan <- order2
@@ -105,15 +107,14 @@ func TestBuyPartialAsset(t *testing.T) {
 	orderChan <- order
 
 	assert := assert.New(t)
-	wg.Add(1)
 	go func() {
-		defer wg.Done()
 		for range orderChanOut {
 		}
 	}()
 
 	wg.Wait()
 
+	// assert := assert.New(t)
 	assert.Equal("CLOSED", order.Status, "Order 1 should be closed")
 	assert.Equal(0, order.PendingShares, "Order 1 should have 0 PendingShares")
 
