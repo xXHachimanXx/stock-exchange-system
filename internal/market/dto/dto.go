@@ -1,6 +1,6 @@
 package dto
 
-type TradeInput struct {
+type TradeInputDTO struct {
 	OrderID       string  `json:"order_id"`
 	InvestorID    string  `json:"investor_id"`
 	AssetID       string  `json:"asset_id"`
@@ -10,18 +10,18 @@ type TradeInput struct {
 	OrderType     string  `json:"order_type"`
 }
 
-type OrderOutput struct {
-	OrderID            string               `json:"order_id"`
-	InvestorID         string               `json:"investor_id"`
-	AssetID            string               `json:"asset_id"`
-	OrderType          string               `json:"order_type"`
-	Status             string               `json:"status"`
-	Partial            int                  `json:"partial"`
-	Shares             int                  `json:"shares"`
-	TransactionsOutput []*TransactionOutput `json:"transactions"`
+type OrderOutputDTO struct {
+	OrderID            string                  `json:"order_id"`
+	InvestorID         string                  `json:"investor_id"`
+	AssetID            string                  `json:"asset_id"`
+	OrderType          string                  `json:"order_type"`
+	Status             string                  `json:"status"`
+	Partial            int                     `json:"partial"`
+	Shares             int                     `json:"shares"`
+	TransactionsOutput []*TransactionOutputDTO `json:"transactions"`
 }
 
-type TransactionOutput struct {
+type TransactionOutputDTO struct {
 	TransactionID string  `json:"transaction_id"`
 	BuyerID       string  `json:"buyer_id"`
 	SellerID      string  `json:"seller_id"`
