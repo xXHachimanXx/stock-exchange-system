@@ -1,0 +1,6 @@
+{
+  "/page": "app/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/[wallet_id]/page": "app/[wallet_id]/page.js",
+  "/[wallet_id]/home-broker/[asset_id]/page": "app/[wallet_id]/home-broker/[asset_id]/page.js"
+}

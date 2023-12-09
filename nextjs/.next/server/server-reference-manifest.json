@@ -1,0 +1,13 @@
+{
+  "node": {
+    "00af3a84375d575723f561ab931d25090e0d71f1": {
+      "workers": {
+        "app/[wallet_id]/home-broker/[asset_id]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fhachiman%2Fgit-projects%2Fstock-exchange-system%2Fnextjs%2Fsrc%2Fapp%2Fcomponents%2FOrderForm.tsx%22%2C%5B%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/[wallet_id]/home-broker/[asset_id]/page": "rsc"
+      }
+    }
+  },
+  "edge": {}
+}
