@@ -29,11 +29,3 @@ volumes:
 networks:
   my-network:
     external: true
-# //Linux ou Mac
-# /etc/hosts
-
-# 127.0.0.1 host.docker.internal
-
-# //Windows
-# C:\Windows\system32\drivers\etc\hosts (bloco de notas como administrador)
-# 127.0.0.1 host.docker.internal
